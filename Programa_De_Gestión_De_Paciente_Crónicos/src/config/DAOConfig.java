@@ -8,7 +8,7 @@ import org.bson.Document;
 import view.Login;
 
 public class DAOConfig {
-    private String uri = "mongodb+srv://taller:prueba@cluster0.n3abd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    private String uri = "Cluster_Link";
     private MongoCollection<Document> collection;
 
     public DAOConfig(String Collection){
