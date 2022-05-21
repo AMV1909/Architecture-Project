@@ -11,10 +11,11 @@ public class EmployeeDAO {
     private MongoCollection<Document> collection = null;
 
     public EmployeeDAO() {
-        daoConfig = new DAOConfig("employees");
+        daoConfig = new DAOConfig("employees"); //Put the name of the collection you wanna access
         collection = daoConfig.getCollection();
     }
 	
+    //This is for save one document, you have to create one document with all the fields you wanna save
     public void SaveEmployee(Employee object){
         InsertOneResult result = collection.insertOne(new Document()
             .append("Name", object.getName())
@@ -25,6 +26,7 @@ public class EmployeeDAO {
         System.out.println("Success! Inserted document id: " + result.getInsertedId());
     }
 	
+    //This method works like the method find, it's just pass the credentials of the employee and verify if someone has that credentials
     public boolean Login(String User, String Password){
         Document item = new Document();
         item.put("User", User);
