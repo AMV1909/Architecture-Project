@@ -8,12 +8,12 @@ import org.bson.Document;
 import view.Login;
 
 public class DAOConfig {
-    private String uri = "Cluster_Link";
+    private String uri = ""; //Put the link of the MongoDB Cluster where is hosted your database
     private MongoCollection<Document> collection;
 
     public DAOConfig(String Collection){
         MongoClient mongoClient = MongoClients.create(uri);
-        MongoDatabase database = mongoClient.getDatabase("applicationDB");
+        MongoDatabase database = mongoClient.getDatabase(""); //Put the name of your databse
         collection = database.getCollection(Collection);
     }
 	
@@ -21,6 +21,7 @@ public class DAOConfig {
         return collection;
     }
     
+//I was programming in Netbeans, so, this is for initialize the application
     public static void main(String[] args) {
         Login Login = new Login();
         Login.setVisible(true);
