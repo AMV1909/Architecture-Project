@@ -21,7 +21,7 @@ public class DAOConfig {
         return collection;
     }
     
-//I was programming in Netbeans, so, this is for initialize the application
+    //I was programming in Netbeans, so, this is for initialize the application
     public static void main(String[] args) {
         Login Login = new Login();
         Login.setVisible(true);
