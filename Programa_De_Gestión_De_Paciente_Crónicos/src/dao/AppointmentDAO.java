@@ -13,10 +13,11 @@ public class AppointmentDAO {
     private MongoCollection<Document> collection = null;
 
     public AppointmentDAO() {
-        daoConfig = new DAOConfig("appointments");
+        daoConfig = new DAOConfig(""); //Put the name of the collection you wanna access
         collection = daoConfig.getCollection();
     }
 	
+    //This is for save one document, you have to create one document with all the fields you wanna save
     public void SaveApoinment(Appointment object){
         InsertOneResult result = collection.insertOne(new Document()
             .append("TypeDocument", object.getTypeDocument())
@@ -31,6 +32,8 @@ public class AppointmentDAO {
         System.out.println("Success! Inserted document id: " + result.getInsertedId());
     }
 	
+    /*This is for find one document, you have to create one document with some of the information of the document you wanna find, then you have to
+      use the method find() passing as paramether the document you created*/
     public Document FindDate(String TypeDocument, String Document, String Date){
         Document item = new Document();
         item.put("TypeDocument", TypeDocument);
@@ -49,9 +52,11 @@ public class AppointmentDAO {
         return doc;
     }
     
+    //This is for update, first of all, you gotta have the document you wanna update, you can use the previous method for that
     public void SetImpressions(Document doc, String Diagnostic, String Impressions){
-        Bson item = doc.toBsonDocument();
+        Bson item = doc.toBsonDocument(); //Convert the Document to BsonDocument
         
+	//Create one document with all new and old fields
         Document update = new Document()
             .append("TypeDocument", doc.get("TypeDocument"))
             .append("Document", doc.get("Document"))
@@ -63,13 +68,14 @@ public class AppointmentDAO {
             .append("Impressions", Impressions);
         
         try{
-            collection.findOneAndReplace(item, update);
+            collection.findOneAndReplace(item, update); //Use the method findOneAndReplace passing as paramethers the BsonDocument and the updated Document
             System.out.println("Success! Impressions inserted");
         }catch(Exception e){
             System.out.println(e);
         }
     }
     
+    //This is for return in an ArrayList all the documents of one collection
     public ArrayList<Document> getAllDates() {
         return collection.find().into(new ArrayList<Document>());
     }
