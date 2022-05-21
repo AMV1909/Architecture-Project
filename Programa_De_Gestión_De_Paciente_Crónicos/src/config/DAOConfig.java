@@ -13,7 +13,7 @@ public class DAOConfig {
 
     public DAOConfig(String Collection){
         MongoClient mongoClient = MongoClients.create(uri);
-        MongoDatabase database = mongoClient.getDatabase(""); //Put the name of your databse
+        MongoDatabase database = mongoClient.getDatabase(""); //Put the name of your database
         collection = database.getCollection(Collection);
     }
 	
